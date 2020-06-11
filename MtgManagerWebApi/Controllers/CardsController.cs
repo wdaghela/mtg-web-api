@@ -23,7 +23,7 @@ namespace MtgManagerWebApi.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<CardResponse>), 201)]
+        [ProducesResponseType(typeof(List<CardResponse>), 200)]
         public async Task<IActionResult> Get()
         {
             var cards = await _cardService.AllAsync();
@@ -32,14 +32,14 @@ namespace MtgManagerWebApi.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        [ProducesResponseType(typeof(CardResponse),201)]
+        [ProducesResponseType(typeof(CardResponse),200)]
         public async Task<IActionResult> Get([FromRoute]string id)
         {
             return Ok(_mapper.Map <Card,CardResponse>(await _cardService.GetAsync(id)));
         }
 
         [HttpGet("FindAll")]
-        [ProducesResponseType(typeof(CardResponse),201)]
+        [ProducesResponseType(typeof(CardResponse),200)]
         public async Task<IActionResult> FindAll([FromBody]Dictionary<string,string> param)
         {
             var cards = await _cardService.AllAsync(param);
